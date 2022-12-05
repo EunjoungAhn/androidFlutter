@@ -57,7 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
             InkWell(
               child: Icon(Icons.add),
               onTap:() {
-                print("아이콘 클릭됨!");
+                print("클릭 효과가 있는 클릭!");
+              },
+            ),
+            GestureDetector(
+              child: Icon(Icons.add),
+              onTap:() {
+                print("클릭 효과가 없이 클릭됨!");
               },
             ),
             Container(child: Text("컨테이너 안"), color: Colors.redAccent,),
