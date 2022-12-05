@@ -66,10 +66,24 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          print("FAB 눌림!");
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+        bottomNavigationBar: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: "홈"
+              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.more),
+                  label: "더보기탭"
+              )
+            ],
+        ),
     );
   }
 }
