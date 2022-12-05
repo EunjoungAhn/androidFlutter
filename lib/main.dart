@@ -52,7 +52,14 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Icon(Icons.add),
+            // 텍스트 버튼 말고도 특정 무언가를 클릭하고 싶을때 사용.
+            // 감싸는 위젯은 항상 무엇을 감싸는지 child로 알려주어야 한다.
+            InkWell(
+              child: Icon(Icons.add),
+              onTap:() {
+                print("아이콘 클릭됨!");
+              },
+            ),
             Container(child: Text("컨테이너 안"), color: Colors.redAccent,),
             TextButton(onPressed: () {
               print("텍스트 눌림!");
