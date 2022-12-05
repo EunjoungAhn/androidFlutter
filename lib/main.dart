@@ -4,6 +4,7 @@ void main() {
   runApp(const MyApp());
 }
 
+// 앱이 실행될때는 상태가 변경이 없기 때문에 StatelessWidget으로 감싸져있다.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -31,11 +32,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _idx = 0;
+  Color color = Colors.blue;
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+  
+  // 현재의 class 화면이 맨 처음 생성될때 실행되는 함수
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -66,7 +74,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 print("클릭 효과가 없이 클릭됨!");
               },
             ),
-            Container(child: Text("컨테이너 안"), color: Colors.redAccent,),
+            Container(
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    color = Colors.redAccent;
+                  });
+                },
+                  child: Text("컨테이너 안"),
+              ),
+              color: color,
+            ),
             TextButton(onPressed: () {
               print("텍스트 눌림!");
             },
@@ -82,6 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           print("FAB 눌림!");
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context){
+              return MyHomePage(title: "새로운 페이지에요!");
+            })
+          );
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
