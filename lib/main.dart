@@ -30,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _idx = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -73,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
         bottomNavigationBar: BottomNavigationBar(
+          // items 안에 있기에 두개 이상이 등록되어야 에러가 없다.
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home),
@@ -83,6 +85,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   label: "더보기탭"
               )
             ],
+          // bottomNavigationBar에서 해당 Item을 클릭하면 index을 알 수 있다.
+          onTap: (index){
+              setState(() { // 플러터는 바뀐다는 것을 알려주어야 한다.
+                print(index);
+                // 탭이 눌린 index로 바꾸어 주기
+                _idx = index;
+              });
+          },
+          currentIndex: _idx,
         ),
     );
   }
